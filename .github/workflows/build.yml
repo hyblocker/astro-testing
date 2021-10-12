@@ -19,14 +19,15 @@ jobs:
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2.3.1
 
       # GitHub!!!!
-      - name: Checkout builds
-        uses: actions/checkout@master
-        with:
-          ref: "public"
-          path: "public"
+      # - name: Checkout builds
+      #   uses: actions/checkout@master
+      #   with:
+      #     ref: "public"
+      #     path: "public"
 
       # Install dependencies with pnpm
       - name: Install dependencies
