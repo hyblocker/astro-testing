@@ -21,6 +21,13 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      # GitHub!!!!
+      - name: Checkout builds
+        uses: actions/checkout@master
+        with:
+          ref: "public"
+          path: "public"
+
       # Install dependencies with pnpm
       - name: Install dependencies
         run: npm ci
@@ -31,16 +38,9 @@ jobs:
           npm run build
           touch ./dist/.nojekyll
 
-      # Push to your pages repo
-      - name: Checkout builds
-        uses: actions/checkout@master
-        with:
-          ref: "public"
-          path: "public"
-
       - name: Push builds
         run: |
-          cd $GITHUB_WORKSPACE/builds
+          cd $GITHUB_WORKSPACE/public
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git add .
