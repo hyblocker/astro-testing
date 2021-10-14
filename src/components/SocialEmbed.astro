@@ -1,0 +1,9 @@
+---
+const { title, description, image, color } = Astro.props;
+---
+<meta property="og:title" content={title}/>
+<meta name="description" content={description}/>
+<meta property="og:description" content={description}/>
+<meta property="twitter:image:src" content={image}/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content={color}/>
