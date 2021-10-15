@@ -1,0 +1,17 @@
+---
+const { page } = Astro.props;
+
+const getLinkClass = ((url) => { return (page == url) ? "headerPage selected" : "headerPage";});
+
+const homeClassList = getLinkClass("/");
+const aboutClassList = getLinkClass("/about");
+const docsClassList = getLinkClass("/docs");
+
+---
+<div class="header">
+    <ul class="headerLinks">
+        <li><a class={homeClassList} href="/">Home</a></li>
+        <li><a class={aboutClassList} href="/">About</a></li>
+        <li><a class={docsClassList} href="/docs">Documentation</a></li>
+    </ul>
+</div>
