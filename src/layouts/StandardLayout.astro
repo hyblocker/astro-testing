@@ -1,0 +1,34 @@
+---
+import SocialEmbed from '../components/SocialEmbed.astro';
+import Header from '../components/Header.astro';
+import { SITE_NAME } from '../constants.js';
+
+const currentPage = Astro.request.url.pathname;
+
+const title = (currentPage === '/') ? SITE_NAME : `${SITE_NAME} | ${currentPage}`;
+---
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+
+        <SocialEmbed
+            title="lorem ipsum dolor sit amet"
+            description="woah very descriptin omg!!!"
+            image="./assets/logo.svg"
+            color="#ff00ff"
+        />
+
+        <title>{title}</title>
+        <link rel="stylesheet" href="/style/home.css">
+    </head>
+    <body>
+        <Header
+            page={currentPage}
+        />
+
+        <div class="content">
+            <slot />
+        </div>
+    </body>
+</html>

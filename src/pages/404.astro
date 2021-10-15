@@ -1,0 +1,47 @@
+---
+import SocialEmbed from '../components/SocialEmbed.astro';
+
+
+// Component Imports
+import Tour from '../components/Tour.astro';
+// You can import components from any supported Framework here!
+
+// Component Script:
+// You can write any JavaScript/TypeScript that you'd like here.
+// It will run during the build, but never in the browser.
+// All variables are available to use in the HTML template below.
+let title = 'My Astro Site';
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/core-concepts/astro-components/
+---
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+
+    <SocialEmbed
+        title="lorem ipsum dolor sit amet"
+        description="woah very descriptin omg!!!"
+        image="./assets/logo.svg"
+        color="#ff00ff"
+    />
+
+    <title>{title}</title>
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+</head>
+<body>
+    <!--
+    <Header
+        selected="home"
+    />
+    -->
+    <main>
+        <h1>Amogus frmaeowkr</h1>
+        <hr>
+        <p>When the impostor is sus!</p>
+    </main>
+</body>
+</html>
