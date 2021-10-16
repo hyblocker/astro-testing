@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import { SITE_NAME } from '../constants.js';
 
 const currentPage = Astro.request.url.pathname;
+const { title=currentPage } = Astro.props;
 ---
 <html lang="en">
     <head>
@@ -11,9 +12,9 @@ const currentPage = Astro.request.url.pathname;
         <meta name="viewport" content="width=device-width">
 
         <SocialEmbed
-            title="lorem ipsum dolor sit amet"
+            title={`${SITE_NAME} | ${title}`}
             description="woah very descriptin omg!!!"
-            image="./assets/logo.svg"
+            image="assets/logo.svg"
             color="#ff00ff"
         />
 

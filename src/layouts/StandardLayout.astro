@@ -5,7 +5,8 @@ import { SITE_NAME } from '../constants.js';
 
 const currentPage = Astro.request.url.pathname;
 
-const title = (currentPage === '/') ? SITE_NAME : `${SITE_NAME} | ${currentPage}`;
+const { transparent=true, title=currentPage } = Astro.props;
+const titleGenerated = (currentPage === '/') ? SITE_NAME : `${SITE_NAME} | ${title}`;
 ---
 <html lang="en">
     <head>
@@ -13,18 +14,18 @@ const title = (currentPage === '/') ? SITE_NAME : `${SITE_NAME} | ${currentPage}
         <meta name="viewport" content="width=device-width">
 
         <SocialEmbed
-            title="lorem ipsum dolor sit amet"
+            title={ titleGenerated }
             description="woah very descriptin omg!!!"
-            image="./assets/logo.svg"
+            image="assets/logo.svg"
             color="#ff00ff"
         />
 
-        <title>{title}</title>
         <link rel="stylesheet" href="/style/home.css">
     </head>
     <body>
         <Header
             page={currentPage}
+            transparent={transparent}
         />
 
         <div class="content">

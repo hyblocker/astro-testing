@@ -1,5 +1,5 @@
 ---
-const { page } = Astro.props;
+const { page, transparent = false } = Astro.props;
 
 const getLinkClass = ((url) => {
     if (page === '/') {
@@ -17,12 +17,14 @@ const getLinkClass = ((url) => {
     }
 });
 
+const homeRootClassList = transparent === "true" ? "header transparent" : "header";
+
 const homeClassList = getLinkClass("/");
 const aboutClassList = getLinkClass("/about");
 const docsClassList = getLinkClass("/docs");
 
 ---
-<div class="header">
+<div class={homeRootClassList}>
     <ul class="headerLinks">
         <li><a class={homeClassList} href="/">Home</a></li>
         <li><a class={aboutClassList} href="/about">About</a></li>
