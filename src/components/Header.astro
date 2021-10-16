@@ -1,7 +1,21 @@
 ---
 const { page } = Astro.props;
 
-const getLinkClass = ((url) => { return (page == url) ? "headerPage selected" : "headerPage";});
+const getLinkClass = ((url) => {
+    if (page === '/') {
+        if (url === page) {
+            return "headerPage selected";
+        } else {
+            return "headerPage";
+        }
+    } else {
+        if (url !== '/') {
+            return ((page.includes(url)) ? "headerPage selected" : "headerPage");
+        } else {
+            return "headerPage";
+        }
+    }
+});
 
 const homeClassList = getLinkClass("/");
 const aboutClassList = getLinkClass("/about");
