@@ -1,6 +1,5 @@
 ---
-// import DocsSearch from '../components/docs/DocsSearch.astro';
-import DocSearchbox from '../components/DocSearchbox.astro';
+import DocsSearch from '../components/docs/DocsSearch.astro';
 import SocialEmbed from '../components/SocialEmbed.astro';
 import Header from '../components/Header.astro';
 import { SITE_NAME, DOCS_TREE, addDoc } from '../constants.js';
@@ -43,7 +42,7 @@ import Debug from 'astro/debug';
     
         <div class="content">
        
-            <DocSearchbox placeholder={ SEARCH } />
+            <DocsSearch placeholder={ SEARCH } />
             
             <Debug {doc} />
             <Debug {DOCS_TREE} />
