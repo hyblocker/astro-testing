@@ -1,4 +1,6 @@
 ﻿---
-const a = 4;
+const { placeholder="Search" } = Astro.props;
 ---
-aa
+<div class="search-container">
+    <input type="text" placeholder={placeholder} />
+</div>
