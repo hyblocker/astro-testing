@@ -2,5 +2,21 @@
 const { placeholder="Search" } = Astro.props;
 ---
 <div class="search-container">
-    <input type="text" placeholder={placeholder} />
+    <input class="searchbox" type="text" placeholder={placeholder} />
 </div>
+
+<script type="text/javascript">
+    const searchbox = document.querySelectorAll(".search-container")[0];
+    const searchHandle = ((e) => {
+        if (e.charCode === 13) {
+            e.preventDefault();
+            const searchTerm = new URLSearchParams();
+            searchTerm.set('q', searchbox.children[0].value);
+
+            console.log(`Navigating to ${searchTerm.toString()}`);
+
+            window.location.href=`/docs/search?${searchTerm.toString()}`;
+        }
+    });
+    searchbox.onkeypress = searchHandle;
+</script>

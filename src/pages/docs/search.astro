@@ -1,0 +1,73 @@
+---
+import DocumentationLayout from '$layouts/DocumentationLayout.astro';
+import { Markdown } from 'astro/components';
+---
+<DocumentationLayout
+    title="Search"
+>
+    <div class="temporary">
+        <span class="nojs-search">Searching requires JavaScript</span>
+    </div>
+</DocumentationLayout>
+
+<script type="text/javascript">
+(async function() {
+    const LOCALE = "en";
+    const response = await fetch('/content/shared/i18n.json');
+    const CORE_I18N = JSON.parse(await response.text());
+
+    const container = document.querySelectorAll(".temporary")[0];
+    console.log(container);
+
+    // Change class
+    container.classList.remove("temporary");
+    container.classList.add("searchBuffer");
+
+    // Clear children
+    container.innerHTML = '';
+
+    // Search results
+    const url = new URL(window.location.href);
+    const searchParams = new URLSearchParams(url.search.replace(/^\?+/, ''));
+    const searchTerm = searchParams.get('q');
+
+    // Search db
+    const searchResults = [{url:"/docs",title:"Documentation"}];
+
+    // Render
+    const searchingForElem = document.createElement('h2');
+    searchingForElem.classList.add('title');
+    searchingForElem.appendChild(document.createTextNode(`${CORE_I18N[LOCALE].SEARCHED_FOR} "${searchTerm}":`));
+    container.appendChild(searchingForElem);
+
+    const resultsCount = document.createElement('h3');
+    resultsCount.classList.add('title');
+    resultsCount.appendChild(document.createTextNode(`${searchResults.length} ${CORE_I18N[LOCALE].RESULTS_COUNT}`));
+    container.appendChild(resultsCount);
+
+    const searchResultContainer = document.createElement('div');
+    searchResultContainer.classList.add('search-result-container');
+    container.appendChild(searchResultContainer);
+
+    // function to create cards
+    const buildCard = ((data) => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.classList.add("search-result");
+
+        const title = document.createElement("a");
+        title.setAttribute("href", data.url);
+        title.appendChild(document.createTextNode(data.title));
+
+        card.appendChild(title);
+
+        return card;
+    });
+
+    searchResults.forEach(result => {
+        searchResultContainer.appendChild(buildCard(result));
+    });
+
+    // page.data.map(item => <li>{item.title}</h1>)
+})();
+</script>

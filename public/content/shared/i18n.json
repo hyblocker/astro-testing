@@ -1,0 +1,17 @@
+{
+  "en": {
+    "SEARCH": "Search",
+    "SEARCHED_FOR": "You have searched for",
+    "RESULTS_COUNT": "results"
+  },
+  "it": {
+    "SEARCH": "Cerca",
+    "SEARCHED_FOR": "Hai cercato",
+    "RESULTS_COUNT": "risulati"
+  },
+  "mt": {
+    "SEARCH": "Fittex",
+    "SEARCHED_FOR": "Fittixt għal",
+    "RESULTS_COUNT": "risultati"
+  }
+}

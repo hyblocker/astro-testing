@@ -1,20 +1,18 @@
 ---
-import DocsSearch from '../components/docs/DocsSearch.astro';
-import SocialEmbed from '../components/SocialEmbed.astro';
-import Header from '../components/Header.astro';
-import { SITE_NAME, DOCS_TREE, addDoc } from '../constants.js';
+const LOCALE = "en";
+
+import DocsSearch from '$components/docs/DocsSearch.astro';
+import SocialEmbed from '$components/SocialEmbed.astro';
+import Header from '$components/Header.astro';
+import { SITE_NAME } from '$/constants.js';
+import CORE_I18N from '$content/shared/i18n.json';
 
 const currentPage = Astro.request.url.pathname;
 const pagePath = currentPage.endsWith('/') ? currentPage.slice(0, -1) : currentPage;
 const { title=currentPage } = Astro.props;
 
-const SEARCH = "Search1!!";
+const SEARCH = CORE_I18N[LOCALE].SEARCH;
 
-let doc = {};
-doc["path"] = pagePath;
-doc["displayTitle"] =  title;
-doc["lang"] =  "en-US";
-addDoc(doc);
 import Debug from 'astro/debug';
 
 ---
@@ -31,8 +29,8 @@ import Debug from 'astro/debug';
         />
 
         <title>{SITE_NAME} | {currentPage}</title>
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="stylesheet" href="/style/home.css">
+        <link rel="icon" type="image/x-icon" href="/content/shared/favicon.ico" />
+        <link rel="stylesheet" href="/content/shared/home.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;800;900&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
@@ -43,9 +41,6 @@ import Debug from 'astro/debug';
         <div class="content">
        
             <DocsSearch placeholder={ SEARCH } />
-            
-            <Debug {doc} />
-            <Debug {DOCS_TREE} />
         
             <h1>Page: {pagePath}</h1>
             <slot />
